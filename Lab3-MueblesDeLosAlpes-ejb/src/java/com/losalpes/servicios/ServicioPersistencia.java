@@ -109,6 +109,7 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
      */
     @Override
     public Object findById(Class c, Object id) {
-        return entityManager.createQuery("select O from " + c.getSimpleName() + " O where id = " + id).getResultList();
+        List<Object> result = entityManager.createQuery("SELECT p FROM " + c.getSimpleName() + " p where p.login = '" + id+"'").getResultList();
+        return result.get(0); 
     }
 }
