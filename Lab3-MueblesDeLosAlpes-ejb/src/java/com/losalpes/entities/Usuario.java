@@ -22,6 +22,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -101,7 +103,7 @@ public class Usuario implements Serializable {
     /**
      * Profesión del usuario
      */
-    
+    @Enumerated(EnumType.STRING)
     private Profesion profesion;
 
     /**
@@ -119,6 +121,8 @@ public class Usuario implements Serializable {
     /**
      * Devuelve un lista con todos las compras del usuario
      */
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="comprador")
+    @JoinColumn(name="comprador", referencedColumnName="COD_HIS_DIS", nullable=true)
     private ArrayList<RegistroVenta>compras;
 
     //-----------------------------------------------------------

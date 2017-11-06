@@ -14,6 +14,7 @@ package com.losalpes.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -44,7 +45,7 @@ public class Mueble implements Serializable
     @Column(name="REFERENCIA")
     private long referencia;
     
-    @Column(name="REG_VENTA", insertable = false, updatable = false)
+    @Column(name="REG_VENTA")
     private long regVenta;
 
     /**
@@ -90,9 +91,8 @@ public class Mueble implements Serializable
     private boolean seleccion;
 
     
-    @OneToOne
-    @JoinColumn(name="REG_VENTA", referencedColumnName="COD_HIS_DIS", nullable=false)
-    private RegistroVenta registroVentaFk;
+    @OneToOne(cascade=CascadeType.ALL, optional = true, mappedBy="producto")
+    private RegistroVenta registroVenta;
     
     //-----------------------------------------------------------
     // Constructores
@@ -300,12 +300,12 @@ public class Mueble implements Serializable
         this.regVenta = regVenta;
     }
 
-    public RegistroVenta getRegistroVentaFk() {
-        return registroVentaFk;
+    public RegistroVenta getRegistroVenta() {
+        return registroVenta;
     }
 
-    public void setRegistroVentaFk(RegistroVenta registroVentaFk) {
-        this.registroVentaFk = registroVentaFk;
+    public void setRegistroVenta(RegistroVenta registroVenta) {
+        this.registroVenta = registroVenta;
     }
     
     

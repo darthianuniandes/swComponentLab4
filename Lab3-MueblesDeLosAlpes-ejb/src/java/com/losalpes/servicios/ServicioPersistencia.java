@@ -110,6 +110,8 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
     @Override
     public Object findById(Class c, Object id) {
         List<Object> result = entityManager.createQuery("SELECT p FROM " + c.getSimpleName() + " p where p.login = '" + id+"'").getResultList();
+        System.out.println("ISM:" + result.get(0));
+        System.out.println("ISM tamaño en servicio:" + result.size());
         return result.get(0); 
     }
 }

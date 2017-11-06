@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+    Document   : menu
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:param name="titulo" value="Control de Acceso" />
+    <ui:define name="body">
+
+        <h:outputText id="linkHeader" value="Administración del sistema" style="color:white"/>
+
+        <h:panelGroup style="padding-bottom: 20px">
+            <center>
+                <h:form id="form">
+                    <p:outputLabel for="TxtUS" value="Usuario" style="font-weight: bold" />
+                    <p:inputText value="#{historialBean.usuario}" 
+                                 required="true"
+                                 id="TxtUS">                        
+                    </p:inputText> 
+                    <p:commandButton validateClient="true"
+                        update=":form" value ="Consultar" ajax="true" 
+                        actionListener="#{historialBean.traerVentas()}" />
+                    <p:dataTable id="ventas" var="ventaItem" 
+                                 value="#{historialBean.ventas}" 
+                                 rendered="#{not empty historialBean.ventas}">
+                        <p:column headerText="Fecha"> 
+                            <h:outputText value="#{ventaItem.fechaVenta}" />
+                        </p:column>
+                        <p:column headerText="Mueble"> 
+                            <h:outputText value="#{ventaItem.producto.nombre}" />
+                        </p:column>
+                        <p:column headerText="Cantidad"> 
+                            <h:outputText value="#{ventaItem.cantidad}" />
+                        </p:column>
+                        <p:column headerText="Valor"> 
+                            <h:outputText value="#{ventaItem.valor}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </center>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

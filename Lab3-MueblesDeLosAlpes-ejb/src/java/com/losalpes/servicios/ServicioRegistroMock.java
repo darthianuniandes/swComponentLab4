@@ -16,6 +16,7 @@ import com.losalpes.entities.Usuario;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -101,9 +102,11 @@ public class ServicioRegistroMock implements IServicioRegistroMockRemote, IServi
      * @return clientes Lista con todos los clientes del sistema
      */
     @Override
-    public List<Usuario> darClientes()
-    {
-        return(ArrayList<Usuario>) persistencia.findAll(Usuario.class);
+    public List<Usuario> darClientes() {
+        List<Usuario> result = new ArrayList<Usuario>();
+        Vector res = (Vector) persistencia.findAll(Usuario.class);
+        result = new ArrayList<Usuario>(res);
+        return result;       
     }
 
 }
