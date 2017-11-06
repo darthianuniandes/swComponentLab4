@@ -18,6 +18,6 @@ import javax.ejb.Local;
 @Local
 public interface IServicioReportesLocal {
     public List<RegistroVenta> darVentas(String usuario);
-    public List<Mueble> darTopMuebles();
+    public List<RegistroVenta> darTopMuebles();
     public List<Usuario> darTopCompradores();
 }

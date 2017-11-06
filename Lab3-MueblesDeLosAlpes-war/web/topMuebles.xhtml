@@ -13,67 +13,21 @@
     <ui:param name="titulo" value="Control de Acceso" />
     <ui:define name="body">
 
-        <h:outputText id="linkHeader"
-                                    value="Administración del sistema" style="color:white"/>
-
-        <div align="right">
-            <h:panelGroup>
-                <h:form>
-                    <h:commandButton  action="#{loginBean.logout}"  style="background: transparent;
-                                        padding-right: 12px" image="./resources/img/pag/logOff.png"
-                                        title="Cerrar sesión"/>
-                </h:form>
-            </h:panelGroup>
-        </div>
+        <h:outputText id="linkHeader" value="Consulta top muebles" style="color:white"/>        
 
         <h:panelGroup style="padding-bottom: 20px">
             <center>
-                <h:form>
-                    <table>
-                        <tr>
-                            <td width="180">
-
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/vendedores.png"
-                                                   title="Vendedores"
-                                                   action="vendedores.xhtml"/>
-                            </td>
-                            <td width="180">
-
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/muebles.png"
-                                                   title="Muebles"
-                                                   action="catalogo.xhtml"/>
-                                                   
-                            </td>
-                            <td width="180">
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/clientes.png"
-                                                   title="Clientes"
-                                                   action="clientes.xhtml"/>
-                            </td>                            
-                        </tr>
-                        <tr>
-                            <td width="180">
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/carrito.png"
-                                                   title="Historial"
-                                                   action="historial.xhtml"/>
-                            </td>
-                            <td width="180">
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/newWave.png"
-                                                   title="MuebVendidos"
-                                                   action="muebVendidos.xhtml"/>
-                            </td>
-                            <td width="180">
-                                <h:commandButton style="background: transparent"
-                                                   image="./resources/img/pag/vendedor2.png"
-                                                   title="Top5"
-                                                   action="top.xhtml"/>
-                            </td>
-                        </tr>
-                    </table>
+                <h:form id="form">
+                    <p:dataTable id="ventas" var="ventaItem" 
+                                 value="#{topMueblesBean.ventas}" 
+                                 rendered="#{not empty topMueblesBean.ventas}">
+                        <p:column headerText="Mueble"> 
+                            <h:outputText value="#{ventaItem.producto.nombre}" />
+                        </p:column>
+                        <p:column headerText="Cantidad"> 
+                            <h:outputText value="#{ventaItem.cantidad}" />
+                        </p:column>                        
+                    </p:dataTable>
                 </h:form>
             </center>
         </h:panelGroup>

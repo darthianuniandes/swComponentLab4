@@ -8,6 +8,7 @@ package com.losalpes.servicios;
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -30,8 +31,9 @@ public class ServicioReportes implements IServicioReportesLocal {
     }
 
     @Override
-    public List<Mueble> darTopMuebles() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<RegistroVenta> darTopMuebles() {
+        List<RegistroVenta> ventas = (List<RegistroVenta>) persistencia.findTopMuebles(RegistroVenta.class);
+        return ventas;
     }
 
     @Override

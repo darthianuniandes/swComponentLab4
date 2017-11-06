@@ -114,4 +114,12 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
         System.out.println("ISM tamaño en servicio:" + result.size());
         return result.get(0); 
     }
+
+    @Override
+    public Object findTopMuebles(Class c) {
+        List<Object> result = entityManager.createQuery("SELECT p FROM " + c.getSimpleName() + " p ORDER BY p.cantidad DESC").setMaxResults(5).getResultList();
+        System.out.println("ISM:" + result.get(0));
+        System.out.println("ISM tamaño en servicio:" + result.size());
+        return result;
+    }
 }
