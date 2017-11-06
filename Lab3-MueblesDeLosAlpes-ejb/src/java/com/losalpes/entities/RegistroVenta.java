@@ -73,7 +73,7 @@ public class RegistroVenta implements Serializable
      */
     
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="COMP_COD_COMP", referencedColumnName="LOGIN")
+    @JoinColumn(name="USUARIO_FK", referencedColumnName="LOGIN")
     private Usuario comprador;
    
     @Column(name="VALOR")
