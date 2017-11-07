@@ -17,6 +17,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -42,7 +43,8 @@ public class Pais implements Serializable
     /**
      * Ciudades que tiene el país
      */
-    @OneToMany(cascade=CascadeType.ALL) 
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="pais")
+    @JoinColumn(name="pais", referencedColumnName="COD_HIS_DIS", nullable=true) 
     private List<Ciudad> ciudades;
 
     //-----------------------------------------------------------

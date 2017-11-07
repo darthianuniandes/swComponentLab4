@@ -123,7 +123,7 @@ public class Usuario implements Serializable {
      */
     @OneToMany(cascade=CascadeType.ALL, mappedBy="comprador")
     @JoinColumn(name="comprador", referencedColumnName="COD_HIS_DIS", nullable=true)
-    private ArrayList<RegistroVenta>compras;
+    private ArrayList<RegistroVenta> compras;
 
     //-----------------------------------------------------------
     // Constructores

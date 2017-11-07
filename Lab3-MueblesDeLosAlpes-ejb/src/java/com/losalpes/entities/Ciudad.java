@@ -13,12 +13,15 @@
 package com.losalpes.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Clase que representa una ciudad en el sistema
@@ -40,6 +43,11 @@ public class Ciudad implements Serializable
     @Column(name="NOMBRE")
     @Id
     private String nombre;
+    
+    
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="PAIS_FK", referencedColumnName="NOMBRE")
+    private Pais pais;
 
     /**
      * Devuelve el nombre de la ciudad
@@ -84,6 +92,12 @@ public class Ciudad implements Serializable
         this.nombre = nombre;
     }
 
-    
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
 
 }

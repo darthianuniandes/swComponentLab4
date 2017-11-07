@@ -59,4 +59,6 @@ public interface IServicioPersistenciaMockLocal
     
     public java.lang.Object findTopMuebles(java.lang.Class c);
     
+    public java.lang.Object findTopClientes(Object idPais);
+    
 }

@@ -11,11 +11,15 @@
 
 package com.losalpes.servicios;
 
+import com.losalpes.entities.ClienteTop;
 import com.losalpes.excepciones.OperacionInvalidaException;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import java.util.Collection;
+import java.util.Iterator;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
@@ -121,5 +125,35 @@ public class ServicioPersistencia implements IServicioPersistenciaMockLocal,ISer
         System.out.println("ISM:" + result.get(0));
         System.out.println("ISM tamaño en servicio:" + result.size());
         return result;
+    }
+
+    @Override
+    public Object findTopClientes(Object idPais) {
+        
+        String query = "Select c2.login, c2.nombreCompleto, count(c2) compras, SUM(c5.precio * c1.cantidad) dinero "
+                + "FROM RegistroVenta c1 "
+                + "inner join c1.comprador c2 "
+                + "inner join c2.ciudad c3 "
+                + "inner join c3.pais c4 "
+                + "inner join c1.producto c5 "
+                + " group by c2 "
+                + " ORDER BY SUM(c5.precio * c1.cantidad) DESC";
+        
+        List<Object> result = entityManager.createQuery(query).getResultList();
+        List<ClienteTop> listResult = new ArrayList<ClienteTop>();
+        Iterator<Object> itr = result.iterator();
+		while(itr.hasNext()){
+		   Object[] obj = (Object[]) itr.next();
+		   String login = String.valueOf(obj[0]);
+		   String nombreCompleto = String.valueOf(obj[1]);
+		   BigDecimal compras = new BigDecimal(String.valueOf(obj[2]));
+		   BigDecimal valor = new BigDecimal(String.valueOf(obj[3]));
+		   ClienteTop dto = new ClienteTop(login, nombreCompleto, compras, valor);
+		   listResult.add(dto);
+		}
+
+        System.out.println("ISM:" + result.get(0));
+        System.out.println("ISM tamaño en servicio:" + result.size());
+        return listResult;
     }
 }

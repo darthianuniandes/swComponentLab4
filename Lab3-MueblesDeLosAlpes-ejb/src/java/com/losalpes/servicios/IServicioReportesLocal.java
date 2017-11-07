@@ -5,6 +5,7 @@
  */
 package com.losalpes.servicios;
 
+import com.losalpes.entities.ClienteTop;
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;
@@ -19,5 +20,5 @@ import javax.ejb.Local;
 public interface IServicioReportesLocal {
     public List<RegistroVenta> darVentas(String usuario);
     public List<RegistroVenta> darTopMuebles();
-    public List<Usuario> darTopCompradores();
+    public List<ClienteTop> darTopCompradores();
 }

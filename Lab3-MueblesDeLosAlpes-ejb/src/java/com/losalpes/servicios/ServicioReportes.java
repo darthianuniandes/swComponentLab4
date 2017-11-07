@@ -5,6 +5,7 @@
  */
 package com.losalpes.servicios;
 
+import com.losalpes.entities.ClienteTop;
 import com.losalpes.entities.Mueble;
 import com.losalpes.entities.RegistroVenta;
 import com.losalpes.entities.Usuario;
@@ -37,8 +38,9 @@ public class ServicioReportes implements IServicioReportesLocal {
     }
 
     @Override
-    public List<Usuario> darTopCompradores() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<ClienteTop> darTopCompradores() {
+        List<ClienteTop> clientesTop = (List<ClienteTop>) persistencia.findTopClientes("Colombia");
+        return clientesTop;
     }
 
     
